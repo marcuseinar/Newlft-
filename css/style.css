@@ -441,12 +441,16 @@ ul { list-style: none; }
   background-position: center;
 }
 /* Product image backgrounds with industrial feel */
-.product-card__img--1 { background: linear-gradient(135deg, #0c2340 0%, #1a3a5c 40%, #2563eb 100%); }
-.product-card__img--2 { background: linear-gradient(135deg, #1a3a5c 0%, #0f4c75 50%, #1a3a5c 100%); }
+.product-card__img--1 { background: url('../img/cantilever-rack.jpg') center/cover no-repeat; }
+.product-card__img--2 { background: url('../img/pallet-racking.jpg') center/cover no-repeat; }
 .product-card__img--3 { background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #374151 100%); }
 .product-card__img--4 { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 50%, #1e3a5f 100%); }
 .product-card__img--5 { background: linear-gradient(135deg, #0c2340 0%, #234a7a 50%, #0c2340 100%); }
 .product-card__img--6 { background: linear-gradient(135deg, #292524 0%, #44403c 50%, #292524 100%); }
+
+/* Dark tint overlay for photo-based cards instead of SVG illustration */
+.product-card__img--1::after,
+.product-card__img--2::after { background: rgba(0,0,20,.35); }
 
 /* Shelf illustration inside product cards */
 .product-card__img::after {
@@ -604,11 +608,13 @@ ul { list-style: none; }
   align-items: flex-end;
 }
 .fb-post__img--lock {
-  background: linear-gradient(135deg, #0c2340 0%, #1a3a5c 40%, #2563eb 100%);
+  background: url('../img/lock-it-detail.jpg') center/cover no-repeat;
 }
 .fb-post__img--shelf {
-  background: linear-gradient(135deg, #0c2340 0%, #1a3a5c 50%, #2563eb 100%);
+  background: url('../img/cantilever-arm.jpg') center/cover no-repeat;
 }
+.fb-post__img--lock::after,
+.fb-post__img--shelf::after { background: rgba(0,0,20,.5); }
 .fb-post__img::after {
   content: '';
   position: absolute;
