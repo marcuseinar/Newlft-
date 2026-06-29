@@ -171,8 +171,9 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 .logo__mark {
+  /* Explicit width prevents width:auto collapsing on mobile Safari/Chrome */
   height: 42px;
-  width: auto;
+  width: 140px; /* 42 × (400/120) viewBox ratio */
   display: block;
   flex-shrink: 0;
 }
@@ -184,6 +185,11 @@ ul { list-style: none; }
   max-width: 110px;
 }
 .logo__sub--white { color: rgba(255,255,255,.65); }
+
+@media (max-width: 768px) {
+  .logo__mark { height: 36px; width: 120px; }
+  .logo__sub  { display: none; }
+}
 
 /* Nav */
 .nav {
