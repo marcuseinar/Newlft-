@@ -283,7 +283,7 @@ ul { list-style: none; }
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 70svh;
   display: flex;
   align-items: center;
   padding-top: 68px;
@@ -377,6 +377,7 @@ ul { list-style: none; }
   gap: var(--gap);
 }
 .category-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--c-white);
@@ -387,6 +388,7 @@ ul { list-style: none; }
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
   text-decoration: none;
   color: var(--c-text);
+  overflow: hidden;
 }
 .category-card:hover {
   transform: translateY(-4px);
@@ -411,6 +413,31 @@ ul { list-style: none; }
 .category-card__title { font-size: 1.1rem; font-weight: 700; color: var(--c-navy); }
 .category-card__desc  { font-size: .87rem; color: var(--c-gray-600); flex: 1; }
 .category-card__link  { font-size: .85rem; font-weight: 600; color: var(--c-accent-d); margin-top: .25rem; }
+
+/* Photo-backed category cards */
+.category-card--photo {
+  min-height: 240px;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  justify-content: flex-end;
+  color: var(--c-white);
+}
+.category-card--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12,35,64,.92) 0%, rgba(12,35,64,.25) 100%);
+  z-index: 0;
+}
+.category-card--photo > * { position: relative; z-index: 1; }
+.category-card--photo .category-card__icon { display: none; }
+.category-card--photo .category-card__title { font-size: 1.25rem; color: var(--c-white); }
+.category-card--photo .category-card__desc  { color: rgba(255,255,255,.82); }
+.category-card--photo .category-card__link  { color: var(--c-accent); }
+.category-card--photo:hover { border-color: transparent; }
+.category-card--hyllsystem { background-image: url('../img/cantilever-rack.jpg'); }
+.category-card--pallstall  { background-image: url('../img/pallet-racking.jpg'); }
 
 /* ===== PRODUCTS ===== */
 .products__grid {
@@ -908,7 +935,7 @@ ul { list-style: none; }
   .nav__cta { margin: .5rem 0 0; align-self: flex-start; }
 
   /* Hero */
-  .hero { min-height: 90svh; }
+  .hero { min-height: 75svh; }
   .hero__ctas { flex-direction: column; align-items: flex-start; }
   .hero__ctas .btn { width: 100%; justify-content: center; }
 
