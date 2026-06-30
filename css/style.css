@@ -176,9 +176,8 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 .logo__mark {
-  /* Explicit width prevents width:auto collapsing on mobile Safari/Chrome */
   height: 42px;
-  width: 140px; /* 42 × (400/120) viewBox ratio */
+  width: 140px;
   display: block;
   flex-shrink: 0;
 }
@@ -283,7 +282,7 @@ ul { list-style: none; }
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 70svh;
   display: flex;
   align-items: center;
   padding-top: 68px;
@@ -377,6 +376,7 @@ ul { list-style: none; }
   gap: var(--gap);
 }
 .category-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--c-white);
@@ -387,6 +387,7 @@ ul { list-style: none; }
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
   text-decoration: none;
   color: var(--c-text);
+  overflow: hidden;
 }
 .category-card:hover {
   transform: translateY(-4px);
@@ -411,6 +412,31 @@ ul { list-style: none; }
 .category-card__title { font-size: 1.1rem; font-weight: 700; color: var(--c-navy); }
 .category-card__desc  { font-size: .87rem; color: var(--c-gray-600); flex: 1; }
 .category-card__link  { font-size: .85rem; font-weight: 600; color: var(--c-accent-d); margin-top: .25rem; }
+
+/* Photo-backed category cards */
+.category-card--photo {
+  min-height: 240px;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  justify-content: flex-end;
+  color: var(--c-white);
+}
+.category-card--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12,35,64,.92) 0%, rgba(12,35,64,.25) 100%);
+  z-index: 0;
+}
+.category-card--photo > * { position: relative; z-index: 1; }
+.category-card--photo .category-card__icon { display: none; }
+.category-card--photo .category-card__title { font-size: 1.25rem; color: var(--c-white); }
+.category-card--photo .category-card__desc  { color: rgba(255,255,255,.82); }
+.category-card--photo .category-card__link  { color: var(--c-accent); }
+.category-card--photo:hover { border-color: transparent; }
+.category-card--hyllsystem { background-image: url('../img/cantilever-rack.jpg'); }
+.category-card--pallstall  { background-image: url('../img/pallet-racking.jpg'); }
 
 /* ===== PRODUCTS ===== */
 .products__grid {
@@ -441,12 +467,16 @@ ul { list-style: none; }
   background-position: center;
 }
 /* Product image backgrounds with industrial feel */
-.product-card__img--1 { background: linear-gradient(135deg, #0c2340 0%, #1a3a5c 40%, #2563eb 100%); }
-.product-card__img--2 { background: linear-gradient(135deg, #1a3a5c 0%, #0f4c75 50%, #1a3a5c 100%); }
+.product-card__img--1 { background: url('../img/cantilever-rack.jpg') center/cover no-repeat; }
+.product-card__img--2 { background: url('../img/pallet-racking.jpg') center/cover no-repeat; }
 .product-card__img--3 { background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #374151 100%); }
 .product-card__img--4 { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 50%, #1e3a5f 100%); }
 .product-card__img--5 { background: linear-gradient(135deg, #0c2340 0%, #234a7a 50%, #0c2340 100%); }
 .product-card__img--6 { background: linear-gradient(135deg, #292524 0%, #44403c 50%, #292524 100%); }
+
+/* Dark tint overlay for photo-based cards instead of SVG illustration */
+.product-card__img--1::after,
+.product-card__img--2::after { background: rgba(0,0,20,.35); }
 
 /* Shelf illustration inside product cards */
 .product-card__img::after {
@@ -604,11 +634,13 @@ ul { list-style: none; }
   align-items: flex-end;
 }
 .fb-post__img--lock {
-  background: linear-gradient(135deg, #0c2340 0%, #1a3a5c 40%, #2563eb 100%);
+  background: url('../img/lock-it-detail.jpg') center/cover no-repeat;
 }
 .fb-post__img--shelf {
-  background: linear-gradient(135deg, #0c2340 0%, #1a3a5c 50%, #2563eb 100%);
+  background: url('../img/cantilever-arm.jpg') center/cover no-repeat;
 }
+.fb-post__img--lock::after,
+.fb-post__img--shelf::after { background: rgba(0,0,20,.5); }
 .fb-post__img::after {
   content: '';
   position: absolute;
@@ -902,7 +934,7 @@ ul { list-style: none; }
   .nav__cta { margin: .5rem 0 0; align-self: flex-start; }
 
   /* Hero */
-  .hero { min-height: 90svh; }
+  .hero { min-height: 75svh; }
   .hero__ctas { flex-direction: column; align-items: flex-start; }
   .hero__ctas .btn { width: 100%; justify-content: center; }
 
